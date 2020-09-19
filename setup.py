@@ -2,23 +2,13 @@
 # -*- coding: utf-8 -*-
 """Install rcli and rcli distutils extensions."""
 
-import os.path
-import shutil
-
 from setuptools import setup
 from setuptools import find_packages
 
 
-if os.path.isdir("rcli.egg-info"):
-    try:
-        shutil.rmtree("rcli.egg-info")
-    except IOError:
-        pass
-
 with open("README.rst") as readme_fp:
     readme = readme_fp.read()
 
-common_requires = ["docopt >= 0.6.2, < 1", "six >= 1.10.0"]
 setup(
     name="rcli",
     use_scm_version=True,
@@ -32,13 +22,11 @@ setup(
     packages=find_packages(exclude=["tests", "docs"]),
     install_requires=[
         "typet >= 0.4, < 0.5",
-        "backports.shutil_get_terminal_size",
         "colorama >= 0.3.6, < 1",
         "tqdm >= 4.9.0, < 5",
-    ]
-    + common_requires,
-    setup_requires=["packaging", "appdirs", "pytest-runner", "setuptools_scm"]
-    + common_requires,
+        "docopt >= 0.6.2, < 1"
+    ],
+    setup_requires=["packaging", "appdirs", "pytest-runner", "setuptools_scm"],
     tests_require=["pytest >= 3.0"],
     entry_points={
         "distutils.setup_keywords": [
@@ -57,6 +45,7 @@ setup(
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
         "Intended Audience :: Developers",
         "Topic :: Utilities",
     ],

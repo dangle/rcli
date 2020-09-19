@@ -1,4 +1,7 @@
-from ..backports.get_terminal_size import get_terminal_size
+# -*- coding: utf-8 -*-
+"""Utility functions for working with the terminal."""
+
+from shutil import get_terminal_size
 
 
 def cols():

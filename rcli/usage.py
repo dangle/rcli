@@ -26,7 +26,7 @@ import textwrap
 import docopt
 import six
 
-from .backports.get_terminal_size import get_terminal_size
+from .display.terminal import cols
 from .config import settings
 
 _LOGGER = logging.getLogger(__name__)
@@ -106,7 +106,7 @@ def format_usage(doc, width=None):
         dedenting, rewrapping, and translating the docstring if necessary.
     """
     sections = doc.replace("\r", "").split("\n\n")
-    width = width or get_terminal_size().columns or 80
+    width = width or cols()
     return "\n\n".join(_wrap_section(s.strip(), width) for s in sections)
 
 
